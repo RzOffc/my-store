@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: #FEFCF7;
+  --espresso: #1A0F07;
+  --amber: #C8873A;
+  --amber-light: #E6A855;
+  --sage: #7A8C6E;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--cream);
+  color: var(--espresso);
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF0D7;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--amber);
+  border-radius: 3px;
+}
+
+/* Custom selection */
+::selection {
+  background: #E6A85540;
+  color: var(--espresso);
+}
+
+/* Noise texture overlay */
+.noise-texture {
+  position: relative;
+}
+.noise-texture::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.4;
+  z-index: 1;
+}
+
+/* Glass morphism */
+.glass {
+  background: rgba(254, 252, 247, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(200, 135, 58, 0.15);
+}
+
+/* Gold shimmer */
+.shimmer-gold {
+  background: linear-gradient(
+    90deg,
+    #C8873A 0%,
+    #E6A855 30%,
+    #F5C878 50%,
+    #E6A855 70%,
+    #C8873A 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Product card hover */
+.product-card {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+.product-card:hover {
+  transform: translateY(-8px);
+}
+
+/* Cart badge */
+.cart-badge {
+  animation: pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes pop {
+  0% { transform: scale(0); }
+  100% { transform: scale(1); }
+}
+
+/* Input styles */
+.input-field {
+  @apply w-full px-4 py-3 bg-cream-100 border border-amber-brand/20 rounded-xl text-espresso-900 font-body placeholder-espresso-600/40 focus:outline-none focus:border-amber-brand focus:ring-2 focus:ring-amber-brand/10 transition-all duration-200;
+}
+
+/* Button primary */
+.btn-primary {
+  @apply inline-flex items-center gap-2 px-6 py-3 bg-amber-brand text-cream-50 font-body font-medium rounded-xl hover:bg-amber-dark transition-all duration-200 active:scale-95;
+}
+
+/* Button ghost */
+.btn-ghost {
+  @apply inline-flex items-center gap-2 px-6 py-3 border border-amber-brand/30 text-espresso-900 font-body font-medium rounded-xl hover:bg-amber-brand/10 transition-all duration-200;
+}
+
+/* Page transitions */
+.page-enter {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Toast custom */
+.toast-custom {
+  font-family: 'DM Sans', sans-serif !important;
+  border-radius: 12px !important;
+}
